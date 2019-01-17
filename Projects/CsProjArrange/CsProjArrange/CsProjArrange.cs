@@ -77,10 +77,12 @@ namespace CsProjArrange
       var before = input.ToString(SaveOptions.DisableFormatting);
       _csProjArrangeStrategy.Arrange(input);
       var after = input.ToString(SaveOptions.DisableFormatting);
-      if (after != before)
+      if (after != before || outputFile == null)
       {
-        BackupInputFile(inputFile, outputFile);
-
+        if (after != before)
+        {
+          BackupInputFile(inputFile, outputFile);
+        }
         WriteOutput(input, outputFile);
       }
     }

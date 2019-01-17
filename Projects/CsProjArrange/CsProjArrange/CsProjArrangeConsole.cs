@@ -78,7 +78,7 @@ namespace CsProjArrange
       {
         Console.Error.WriteLine("Encountered an error: {0}", e.Message);
 #if DEBUG
-        Console.ReadLine();
+      Console.ReadLine();
 #endif
       }
     }
