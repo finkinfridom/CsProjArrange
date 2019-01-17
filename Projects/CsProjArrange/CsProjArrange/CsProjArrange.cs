@@ -14,6 +14,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -87,7 +88,9 @@ namespace CsProjArrange
     private static void WriteOutput(XDocument input, string outputFile)
     {
       var writerSettings = new XmlWriterSettings();
-      writerSettings.OmitXmlDeclaration = true;
+
+      var projectNode = input.Descendants().FirstOrDefault(d => d.Name.LocalName.Equals("Project"));
+      writerSettings.OmitXmlDeclaration = projectNode.Attribute("Sdk") != null;
       writerSettings.Indent = true;
 
       if (outputFile == null)
